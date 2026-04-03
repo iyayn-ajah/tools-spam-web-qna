@@ -14,11 +14,9 @@ def nglspam(username, text, amount):
         'x-requested-with': 'XMLHttpRequest'
     }
     
-    cookies = { AJA SENDIRI }
-    
     session = requests.Session()
     session.headers.update(headers)
-    session.cookies.update(cookies)
+    # Tidak ada cookies sama sekali
     
     success = 0
     failed = 0
@@ -57,4 +55,4 @@ username = input('Masukan usernamenya:\n')
 teks = input('Masukan teksnya:\n')
 jumlah = int(input('Masukan jumlah spam:\n'))
 
-nglspam(username , teks, jumlah)
+nglspam(username, teks, jumlah)
