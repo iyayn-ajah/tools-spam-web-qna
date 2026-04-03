@@ -35,15 +35,15 @@ python nglspam.py
 # Install di VPS
 1.
 ```
-sudo apt update && sudo apt upgrade -y
+apt update && sudo apt upgrade -y
 ```
 2.
 ```
-sudo apt install git -y
+apt install git -y
 ```
 3.
 ```
-sudo apt install python3 python3-pip -y
+apt install python3 python3-pip -y
 ```
 4. 
 ```
