@@ -50,6 +50,11 @@ def nglspam(username, text, amount):
     print(f"\nSelesai! Berhasil: {success}, Gagal: {failed}")
     return {'success': success, 'failed': failed}
 
+print("""
+╔══════════════════════════════════════════════════════════════╗
+║                       NGL SPAM TOOL                          ║
+╚══════════════════════════════════════════════════════════════╝
+""")
 username = input('Masukan usernamenya:\n')
 teks = input('Masukan teksnya:\n')
 jumlah = int(input('Masukan jumlah spam:\n'))
