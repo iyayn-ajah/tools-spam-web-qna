@@ -35,7 +35,7 @@ pkg install git -y
 ```
 3.
 ```
-pkg install python3 python3-pip -y
+pkg install python python-pip -y
 ```
 4. 
 ```
@@ -43,10 +43,10 @@ gitclone https://github.com/iyayn-ajah/tools-spam-web-qna
 ```
 5.
 ```
-pip3 install requests
+pip install requests
 ```
 6.
 ```
-python3 aqaspam.py atau python3 nglspam.py
+python aqaspam.py atau python3 nglspam.py
 ```
 
