@@ -13,7 +13,7 @@ sudo apt install python3 python3-pip -y
 ```
 4. 
 ```
-gitclone https://github.com/iyayn-ajah/tools-spam-web-qna
+git clone https://github.com/iyayn-ajah/tools-spam-web-qna
 ```
 5.
 ```
@@ -39,7 +39,7 @@ pkg install python python-pip -y
 ```
 4. 
 ```
-gitclone https://github.com/iyayn-ajah/tools-spam-web-qna
+git clone https://github.com/iyayn-ajah/tools-spam-web-qna
 ```
 5.
 ```
