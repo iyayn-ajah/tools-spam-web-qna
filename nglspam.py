@@ -16,7 +16,6 @@ def nglspam(username, text, amount):
     
     session = requests.Session()
     session.headers.update(headers)
-    # Tidak ada cookies sama sekali
     
     success = 0
     failed = 0
