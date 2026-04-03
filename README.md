@@ -21,8 +21,17 @@ pip3 install requests
 ```
 6.
 ```
-python3 aqaspam.py atau python3 nglspam.py
+cd tools-spam-web-qna
 ```
+7.
+```
+python3 aqaspam.py 
+```
+atau
+```
+python3 nglspam.py
+```
+
 
 # Install di Termux
 1.
@@ -47,6 +56,14 @@ pip install requests
 ```
 6.
 ```
-python aqaspam.py atau python3 nglspam.py
+cd tools-spam-web-qna
+```
+7.
+```
+python aqaspam.py 
+```
+atau
+```
+python nglspam.py
 ```
 
