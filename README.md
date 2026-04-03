@@ -5,7 +5,7 @@ sudo apt update && sudo apt upgrade -y
 ```
 2.
 ```
-sudo apt install git
+sudo apt install git -y
 ```
 3.
 ```
@@ -31,7 +31,7 @@ pkg update && pkg upgrade -y
 ```
 2.
 ```
-pkg install git
+pkg install git -y
 ```
 3.
 ```
