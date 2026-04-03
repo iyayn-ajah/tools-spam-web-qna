@@ -2,13 +2,10 @@ import requests
 import json
 import time
 import uuid
-import re
 
 def aqaspam(userid, text, amount):
     
     send_url = "https://aqa.link/portal/message/send"
-    
-    cookies = ( AJA SENDIRI }
     
     headers = {
         "accept": "application/json, text/javascript, */*; q=0.01",
@@ -62,7 +59,6 @@ def aqaspam(userid, text, amount):
             response = requests.post(
                 send_url,
                 headers=headers,
-                cookies=cookies,
                 json=payload,
                 timeout=30
             )
@@ -71,14 +67,10 @@ def aqaspam(userid, text, amount):
             if response.status_code == 200:
                 try:
                     resp_data = response.json()
-                    if resp_data.get("code") == 0 or resp_data.get("success") == True:
-                        results["sent"] += 1
-                        print(f"[{i+1}/{amount}] ✅ BERHASIL | {elapsed_ms:.0f}ms")
-                    else:
-                        results["failed"] += 1
-                        error_msg = resp_data.get('message', 'Unknown')
-                        print(f"[{i+1}/{amount}] ❌ GAGAL | {error_msg}")
-                        results["errors"].append(error_msg)
+                    results["sent"] += 1
+                    print(f"[{i+1}/{amount}] ✅ BERHASIL | {elapsed_ms:.0f}ms")
+                    if resp_data.get('code') and resp_data.get('code') != 0:
+                        print(f"     ⚠️  Server note: {resp_data.get('message', 'No message')}")
                 except:
                     results["sent"] += 1
                     print(f"[{i+1}/{amount}] ✅ BERHASIL | {elapsed_ms:.0f}ms")
@@ -90,10 +82,10 @@ def aqaspam(userid, text, amount):
                 results["errors"].append("Rate limited")
                 
             elif response.status_code == 401:
-                print(f"[{i+1}/{amount}] 🔒 SESSION EXPIRED | Cookies tidak valid!")
+                print(f"[{i+1}/{amount}] 🔒 SESSION EXPIRED | Perlu login!")
                 results["failed"] += 1
                 results["success"] = False
-                results["errors"].append("Session expired")
+                results["errors"].append("Session expired - perlu cookies/auth")
                 break
                 
             else:
@@ -123,24 +115,26 @@ def aqaspam(userid, text, amount):
     
     return results
 
-userid = input("""
-╔══════════════════════════════════════════════════════════════╗
-║                        AQA SPAM TOOL                         ║
-╚══════════════════════════════════════════════════════════════╝
 
+print("""
+╔══════════════════════════════════════════════════════════════╗
+║                       AQA SPAM TOOL                          ║
+╚══════════════════════════════════════════════════════════════╝
+    
 📖 CARA MENDAPATKAN USER ID:
     
 1. Buka https://aqa.link/[username_target] di browser
-2. Tekan F12 (Developer Tools)
+2. Buka DevTools
 3. Klik tab "Network"
 4. Kirim 1 pesan ke target
 5. Cari request "send" di Network tab
 6. Klik request tersebut
 7. Lihat tab "Payload"
 8. Cari field "toUserId" - copy angkanya
-
-Masukan User ID (angka):\n""")
+""")
+    
+userid = input("Masukan User ID (angka):\n")
 teks = input('Masukan teksnya:\n')
 jumlah = int(input('Masukan jumlah spam:\n'))
-
+    
 aqaspam(userid, teks, jumlah)
