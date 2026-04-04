@@ -51,9 +51,9 @@ def nglspam(username, text, amount):
     return {'success': success, 'failed': failed}
 
 print("""
-╔══════════════════════════════════════════════════════════════╗
-║                       NGL SPAM TOOL                          ║
-╚══════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════╗
+║              NGL SPAM TOOL               ║
+╚══════════════════════════════════════════╝
 """)
 username = input('Masukan usernamenya:\n')
 teks = input('Masukan teksnya:\n')
