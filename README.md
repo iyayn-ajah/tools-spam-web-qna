@@ -31,7 +31,10 @@ atau
 ```
 python nglspam.py
 ```
-
+atau
+```
+python whispaspam.py
+```
 # Install di VPS
 1.
 ```
@@ -64,6 +67,10 @@ python3 aqaspam.py
 atau
 ```
 python3 nglspam.py
+```
+atau
+```
+python3 whispaspam.py
 ```
 
 
