@@ -3,11 +3,45 @@ import json
 import time
 import uuid
 
-def aqaspam(userid, text, amount):
+def aqaspam(username, text, amount):
+    
+    get_user_url = "https://aqa.link/portal/user/getInfoByUserName"
+    
+    headers = {
+        "accept": "application/json, text/javascript, */*; q=0.01",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "en,en-US;q=0.9,en-GB-oxendict;q=0.8,id;q=0.7",
+        "content-type": "application/json",
+        "origin": "https://aqa.link",
+        "referer": f"https://aqa.link/{username}",
+        "sec-ch-ua": '"Chromium";v="146", "Not-A.Brand";v="24", "Google Chrome";v="146"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"Windows"',
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+        "x-requested-with": "XMLHttpRequest"
+    }
+    
+    payload = {"userName": username}
+    
+    try:
+        response = requests.post(get_user_url, headers=headers, json=payload, timeout=30)
+        
+        if response.status_code == 200:
+            user_data = response.json()
+            
+            if user_data.get('code') == 200 and user_data.get('data'):
+                userid = user_data['data']['id']
+            else:
+                return {"success": False, "sent": 0, "failed": 0, "errors": ["User tidak ditemukan"]}
+        else:
+            return {"success": False, "sent": 0, "failed": 0, "errors": [f"HTTP {response.status_code}"]}
+            
+    except Exception as e:
+        return {"success": False, "sent": 0, "failed": 0, "errors": [str(e)]}
     
     send_url = "https://aqa.link/portal/message/send"
     
-    headers = {
+    headers_spam = {
         "accept": "application/json, text/javascript, */*; q=0.01",
         "accept-encoding": "gzip, deflate, br, zstd",
         "accept-language": "en,en-US;q=0.9,en-GB-oxendict;q=0.8,id;q=0.7",
@@ -21,12 +55,6 @@ def aqaspam(userid, text, amount):
         "x-requested-with": "XMLHttpRequest"
     }
     
-    print(f"[*] Target User ID: {userid}")
-    
-    if not str(userid).isdigit():
-        print("✗ User ID harus berupa angka!")
-        return {"success": False, "sent": 0, "failed": 0, "errors": ["Invalid User ID - harus angka"]}
-    
     device_id = str(uuid.uuid4())
     
     results = {
@@ -34,20 +62,22 @@ def aqaspam(userid, text, amount):
         "sent": 0,
         "failed": 0,
         "errors": [],
+        "username": str(username),
         "user_id": str(userid)
     }
     
     print(f"\n{'='*60}")
-    print(f"🚀 MEMULAI SPAM KE USER ID: {userid}")
+    print(f"🚀 MEMULAI SPAM KE USERNAME: {username} (ID: {userid})")
     print(f"{'='*60}")
-    print(f"📌 User ID      : {userid}")
+    print(f"📌 Username     : {username}")
+    print(f"🆔 User ID      : {userid}")
     print(f"📝 Pesan        : {text[:50]}{'...' if len(text) > 50 else ''}")
     print(f"🔢 Jumlah       : {amount} kali")
     print(f"🆔 Device ID    : {device_id}")
     print(f"{'='*60}\n")
     
     for i in range(amount):
-        payload = {
+        payload_spam = {
             "toUserId": int(userid),
             "content": text,
             "deviceId": device_id,
@@ -58,8 +88,8 @@ def aqaspam(userid, text, amount):
             start_time = time.time()
             response = requests.post(
                 send_url,
-                headers=headers,
-                json=payload,
+                headers=headers_spam,
+                json=payload_spam,
                 timeout=30
             )
             elapsed_ms = (time.time() - start_time) * 1000
@@ -107,9 +137,10 @@ def aqaspam(userid, text, amount):
     {'='*60}
     📊 RINGKASAN PENGIRIMAN
     {'='*60}
-    🎯 Target User ID : {userid}
-    ✅ Berhasil       : {results['sent']}/{amount}
-    📈 Success Rate   : {success_rate:.1f}%
+    🎯 Target Username : {username}
+    🆔 Target User ID  : {userid}
+    ✅ Berhasil        : {results['sent']}/{amount}
+    📈 Success Rate    : {success_rate:.1f}%
     {'='*60}
     """)
     
@@ -117,24 +148,13 @@ def aqaspam(userid, text, amount):
 
 
 print("""
-╔══════════════════════════════════════════════════════════════╗
-║                       AQA SPAM TOOL                          ║
-╚══════════════════════════════════════════════════════════════╝
-    
-📖 CARA MENDAPATKAN USER ID:
-    
-1. Buka https://aqa.link/[username_target] di browser
-2. Buka DevTools
-3. Klik tab "Network"
-4. Kirim 1 pesan ke target
-5. Cari request "send" di Network tab
-6. Klik request tersebut
-7. Lihat tab "Payload"
-8. Cari field "toUserId" - copy angkanya
+╔═════════════════════════════════════════════════╗
+║                   AQA SPAM TOOL                 ║
+╚═════════════════════════════════════════════════╝
 """)
     
-userid = input("Masukan User ID (angka):\n")
+username = input("Masukan username:\n")
 teks = input('Masukan teksnya:\n')
 jumlah = int(input('Masukan jumlah spam:\n'))
     
-aqaspam(userid, teks, jumlah)
+aqaspam(username, teks, jumlah)
