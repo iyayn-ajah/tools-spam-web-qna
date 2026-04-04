@@ -155,11 +155,7 @@ print("""
 """)
 
 print("📌 INFORMASI:")
-print("   • Minimal pesan 8 karakter")
-print("   • Rate limit: 100 pesan/menit")
-print("   • Delay antar pesan: 1-2.5 detik")
-print()
-
+print(' • Teksnya minimal pesan 8 karakter\n\n')
 username = input("🔹 Masukkan username target (tanpa @): ")
 teks = input("🔹 Masukkan teks pesan (minimal 8 karakter): ")
 jumlah = int(input("🔹 Masukkan jumlah spam: "))
