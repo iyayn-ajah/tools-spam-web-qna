@@ -149,9 +149,9 @@ def whispaspam(username, text, amount):
     return {'success': success, 'failed': failed}
 
 print("""
-╔══════════════════════════════════════════════════════════════╗
-║                    WHISPA SPAM TOOL                          ║
-╚══════════════════════════════════════════════════════════════╝
+╔════════════════════════════════╗
+║       WHISPA SPAM TOOL         ║
+╚════════════════════════════════╝
 """)
 
 print("📌 INFORMASI:")
