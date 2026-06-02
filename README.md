@@ -1,76 +1,60 @@
-# Install di Termux
-1.
-```
+# 🚀 Tools Spam Web QnA
+
+Script sederhana untuk menjalankan beberapa tools Web QnA.
+
+## 📱 Termux
+
+```bash
 pkg update && pkg upgrade -y
-```
-2.
-```
-pkg install git -y
-```
-3.
-```
-pkg install python python-pip -y
-```
-4. 
-```
+pkg install git python python-pip -y
+
 git clone https://github.com/iyayn-ajah/tools-spam-web-qna
-```
-5.
-```
+cd tools-spam-web-qna
+
 pip install requests
 ```
-6.
-```
-cd tools-spam-web-qna
-```
-7.
-```
-python aqaspam.py 
-```
-atau
-```
+
+Jalankan:
+
+```bash
+python aqaspam.py
+# atau
 python nglspam.py
-```
-atau
-```
+# atau
 python whispaspam.py
 ```
-# Install di VPS
-1.
-```
-apt update && sudo apt upgrade -y
-```
-2.
-```
-apt install git -y
-```
-3.
-```
-apt install python3 python3-pip -y
-```
-4. 
-```
+
+---
+
+## 🖥️ VPS / Linux
+
+```bash
+apt update && apt upgrade -y
+apt install git python3 python3-pip -y
+
 git clone https://github.com/iyayn-ajah/tools-spam-web-qna
-```
-5.
-```
+cd tools-spam-web-qna
+
 pip3 install requests
 ```
-6.
-```
-cd tools-spam-web-qna
-```
-7.
-```
-python3 aqaspam.py 
-```
-atau
-```
+
+Jalankan:
+
+```bash
+python3 aqaspam.py
+# atau
 python3 nglspam.py
-```
-atau
-```
+# atau
 python3 whispaspam.py
 ```
 
+---
 
+## 📦 Requirements
+
+* Python 3
+* requests
+
+## ⭐ Support
+
+Jangan lupa kasih ⭐ pada repository jika project ini membantu.
